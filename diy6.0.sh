@@ -8,6 +8,13 @@
 # Blog: https://p3terx.com
 #=============================================================
 
+# 修改默认IP
+# sed -i 's/192.168.1.1/10.0.0.1/g' package/base-files/files/bin/config_generate
+ sed -i '$i uci set network.lan.ifname="eth1"' package/lean/default-settings/files/zzz-default-settings
+ sed -i '$i uci set network.wan.ifname="eth0"' package/lean/default-settings/files/zzz-default-settings
+ sed -i '$i uci set network.wan.proto=pppoe' package/lean/default-settings/files/zzz-default-settings
+ sed -i '$i uci set network.wan6.ifname="eth0"' package/lean/default-settings/files/zzz-default-settings
+ sed -i '$i uci commit network' package/lean/default-settings/files/zzz-default-settings
 sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=6.6/g' ./target/linux/x86/Makefile
 
@@ -34,11 +41,11 @@ rm -rf package/custom; mkdir package/custom
 # sed -i '$a src-git bypass https://github.com/garypang13/openwrt-bypass' feeds.conf.default
 # mv -vf ../mt7621_phicomm_k2p.dts ./target/linux/ramips/dts/mt7621_phicomm_k2p.dts
 #　git clone https://github.com/vernesong/OpenClash.git package/OpenClash
-# git clone https://github.com/jerrykuku/luci-app-vssr.git  package/luci-app-vssr
-# merge_package https://github.com/messense/aliyundrive-webdav aliyundrive-webdav/openwrt applications/aliyundrive-webdav
+git clone https://github.com/jerrykuku/luci-app-vssr.git  package/luci-app-vssr
+merge_package https://github.com/messense/aliyundrive-webdav aliyundrive-webdav/openwrt applications/aliyundrive-webdav
 merge_package https://github.com/vernesong/OpenClash OpenClash/luci-app-openclash
-# merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/luci-app-smartdns
-# merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/smartdns
+merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/luci-app-smartdns
+merge_package https://github.com/sirpdboy/sirpdboy-package sirpdboy-package/smartdns
 # git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
 git clone https://github.com/thinktip/luci-theme-neobird.git package/luci-theme-neobird
 # git clone https://github.com/sbwml/openwrt-alist.git package/openwrt-alist
@@ -55,7 +62,7 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  package/lu
 git clone -b 18.06 https://github.com/garypang13/luci-theme-edge.git package/luci-theme-edge
 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 git clone https://github.com/zzsj0928/luci-app-pushbot package/luci-app-pushbot
-# git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
+git clone https://github.com/xiaorouji/openwrt-passwall2.git package/passwall2
 # git clone https://github.com/firkerword/luci-app-lucky.git package/lucky
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
@@ -65,5 +72,3 @@ git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 # git clone https://github.com/garypang13/luci-app-dnsfilter.git package/luci-app-dnsfilter
 # git clone https://github.com/BCYDTZ/luci-app-UUGameAcc.git package/luci-app-UUGameAcc
 # git clone https://github.com/yichya/luci-app-xray.git package/luci-app-xray
-
-
