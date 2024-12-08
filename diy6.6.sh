@@ -53,5 +53,4 @@ find ./ | grep Makefile | grep mosdns | xargs rm -f
 git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone https://github.com/firkerword/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/firkerword/luci-app-lucky.git package/lucky
-chmod 755 ./package/lucky/luci-app-lucky/root/usr/bin/luckyarch
+
